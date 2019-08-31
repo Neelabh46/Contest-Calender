@@ -28,12 +28,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 
-import android.widget.ListView;
+import android.view.View;
+
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -46,19 +48,23 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
     public static final String LOG_TAG = ContestActivity.class.getName();
     private TextView mEmptyView;
     public String host;
+
+    private LinearLayoutManager mlinearlayoutmanager;
+
+    private ArrayList<Contest> mContest;
     private static final String url_string = "https://clist.by/api/v1/json/contest/?username=Neelabh46&api_key=31913193f20dad9a20fa9d2967bd5d9f01877455";
-     private ContestAdapter mAdapter;
+     private ContestAdapters mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contest_activity);
 
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
-        mEmptyView = (TextView) findViewById(R.id.empty_view);
-
-        earthquakeListView.setEmptyView(mEmptyView);
-        mAdapter = new ContestAdapter(this, new ArrayList<Contest>());        // Set the adapter on the {@link ListView}
-        earthquakeListView.setAdapter(mAdapter);
+        final RecyclerView contestRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+         mContest = new ArrayList<Contest>();
+        mAdapter = new ContestAdapters(mContest);        // Set the adapter on the {@link ListView}
+        contestRecyclerView.setAdapter(mAdapter);
+        mlinearlayoutmanager = new LinearLayoutManager(this);
+        contestRecyclerView.setLayoutManager(mlinearlayoutmanager);
         ConnectivityManager cm =
                 (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -76,18 +82,24 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
             bar.setVisibility(View.GONE);
             mEmptyView.setText("You don't have any fucking internet connection");
         }
-        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Contest currentEarthquake = mAdapter.getItem(position);
+        contestRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, contestRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Contest currentEarthquake = mAdapter.getItem(position);
 
-                Uri earthquakeUri = Uri.parse(currentEarthquake.getMurl());
+                        Uri earthquakeUri = Uri.parse(currentEarthquake.getMurl());
 
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
-                startActivity(websiteIntent);
-            }
-        });
+                        Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+                        startActivity(websiteIntent);
+                        // do whatever
+                    }
 
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+                })
+        );
     }
     @Override
     public Loader<ArrayList<Contest>> onCreateLoader(int i, Bundle bundle) {
@@ -115,19 +127,22 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
     @Override
     public void onLoadFinished(Loader<ArrayList<Contest>> loader, ArrayList<Contest> earthquakes) {
         // Clear the adapter of previous earthquake data
-        mAdapter.clear();
 
-        mEmptyView.setText(R.string.no_earthquakes);
+       // mEmptyView.setText(R.string.no_earthquakes);
 
         ProgressBar bar =(ProgressBar) findViewById(R.id.loading_spinner);
         bar.setVisibility(View.GONE);
         if (earthquakes != null && !earthquakes.isEmpty()) {
-            mAdapter.addAll(earthquakes);
+
+            mContest.clear();
+            mContest.addAll(earthquakes);
+            mAdapter.notifyDataSetChanged();
         }
     }
     @Override
     public void onLoaderReset(Loader<ArrayList<Contest>> loader) {
-        mAdapter.clear();
+        mContest.clear();
+        mAdapter.notifyDataSetChanged();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
