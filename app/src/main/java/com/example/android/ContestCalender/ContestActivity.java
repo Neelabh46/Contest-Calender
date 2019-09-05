@@ -46,7 +46,7 @@ import java.util.Date;
 public class ContestActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Contest>> {
 
     public static final String LOG_TAG = ContestActivity.class.getName();
-    private TextView mEmptyView;
+    private TextView mEmptyView ;
     public String host;
 
     private LinearLayoutManager mlinearlayoutmanager;
@@ -56,15 +56,18 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
      private ContestAdapters mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contest_activity);
 
-        final RecyclerView contestRecyclerView = (RecyclerView) findViewById(R.id.recycler);
-         mContest = new ArrayList<Contest>();
+        final RecyclerView contestRecyclerView = findViewById(R.id.recycler);
+        mEmptyView = findViewById(R.id.empty_view);
+        mContest = new ArrayList<>();
         mAdapter = new ContestAdapters(mContest);        // Set the adapter on the {@link ListView}
         contestRecyclerView.setAdapter(mAdapter);
         mlinearlayoutmanager = new LinearLayoutManager(this);
         contestRecyclerView.setLayoutManager(mlinearlayoutmanager);
+
         ConnectivityManager cm =
                 (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -78,9 +81,10 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
 
         }else
         {
-            ProgressBar bar =(ProgressBar) findViewById(R.id.loading_spinner);
+            ProgressBar bar = findViewById(R.id.loading_spinner);
             bar.setVisibility(View.GONE);
             mEmptyView.setText("You don't have any fucking internet connection");
+            mEmptyView.setVisibility(View.VISIBLE);
         }
         contestRecyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, contestRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
@@ -130,7 +134,7 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
 
        // mEmptyView.setText(R.string.no_earthquakes);
 
-        ProgressBar bar =(ProgressBar) findViewById(R.id.loading_spinner);
+        ProgressBar bar = findViewById(R.id.loading_spinner);
         bar.setVisibility(View.GONE);
         if (earthquakes != null && !earthquakes.isEmpty()) {
 
