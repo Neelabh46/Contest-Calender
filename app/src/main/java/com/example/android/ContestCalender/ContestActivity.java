@@ -30,6 +30,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -42,6 +43,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class ContestActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Contest>> {
 
@@ -116,10 +118,11 @@ public class ContestActivity extends AppCompatActivity implements LoaderManager.
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         String currenttime= formatter.format(date);
         Uri baseUri = Uri.parse(url_string);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
+        Log.e("time",currenttime);
 
         uriBuilder.appendQueryParameter("resource__name", orderBy);
         uriBuilder.appendQueryParameter("end__gte", currenttime);

@@ -22,6 +22,7 @@
 
     <!-- Accent color of the app -->
     <color name="colorAccent">#10CAC9</color>
+    <color name="backgroundRunningStatus">#87e874</color>
     !-- Color for an earthquake with magnitude 0 and 2 -->
 
 
