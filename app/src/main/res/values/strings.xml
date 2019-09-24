@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">Contest Calender</string>
+
+    <string name="no_earthquakes">No contests found.</string>
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
+    <string name="settings_title">Contest Settings</string>
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_selection_label">Contest Host</string>
+    <string name="settings_selection_key" translatable="false">selection</string>
+    <string name="settings_selection_default" translatable="false">@string/settings_selection_codeforces</string>
+
+
+    <string name="settings_selection_codeforces_label">CodeForces </string>
+    <string name="settings_selection_codeforces" translatable="false">codeforces.com</string>
+
+    <string name="settings_selection_codechef_label">CodeChef </string>
+    <string name="settings_selection_codechef" translatable="false">codechef.com</string>
+
+    <string name="settings_selection_topcoder_label">Top Coder </string>
+    <string name="settings_selection_topcoder" translatable="false">topcoder.com</string>
+
+    <string name="settings_selection_hackerearth_label">HackerEarth </string>
+    <string name="settings_selection_hackerearth" translatable="false">hackerearth.com</string>
+    <string name="todo">TODO</string>
+</resources>
