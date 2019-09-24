@@ -1,5 +1,6 @@
 package com.example.android.ContestCalender.data;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,12 +8,13 @@ import androidx.room.PrimaryKey;
 public class  ContestData{
 
     @PrimaryKey
-    private String mName;
+    @NonNull
+    public String mName;
 
-    private String mStart;
-    private String mEnd;
-    private String mUrl;
-    private String mHost;
+    public  String mStart;
+    public  String mEnd;
+    public  String mUrl;
+    public  String mHost;
 
 
     public ContestData(String name,String end,String start,String url,String host) {
@@ -23,5 +25,23 @@ public class  ContestData{
         mUrl = url;
     }
 
+    public String getmEnd() {
+        return mEnd;
+    }
 
+    public String getmHost() {
+        return mHost;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public String getmStart() {
+        return mStart;
+    }
+
+    public String getmUrl() {
+        return mUrl;
+    }
 }
