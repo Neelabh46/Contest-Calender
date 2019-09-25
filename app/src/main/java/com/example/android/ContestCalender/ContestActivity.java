@@ -15,47 +15,19 @@
  */
 package com.example.android.ContestCalender;
 
-import android.app.LoaderManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.Loader;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.view.View;
-
-
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class ContestActivity extends AppCompatActivity  {
 
     public static final String LOG_TAG = ContestActivity.class.getName();
-    private TextView mEmptyView ;
-    public String host;
 
-    private LinearLayoutManager mlinearlayoutmanager;
-
-    private ArrayList<Contest> mContest;
-    private static final String url_string = "https://clist.by/api/v1/json/contest/?username=Neelabh46&api_key=31913193f20dad9a20fa9d2967bd5d9f01877455";
-     private ContestAdapters mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -2,9 +2,6 @@ package com.example.android.ContestCalender;
 
 import android.content.Context;
 import android.graphics.Color;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
