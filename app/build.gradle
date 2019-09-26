@@ -42,6 +42,7 @@ dependencies {
 
 // Testig
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    implementation 'androidx.cardview:cardview:1.0.0'
 
 
 }
