@@ -20,8 +20,14 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 
 public class ContestActivity extends AppCompatActivity  {
@@ -33,6 +39,18 @@ public class ContestActivity extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contest_activity);
+
+       ViewPager viewPager = findViewById(R.id.viewpager);
+
+        // Create an adapter that knows which fragment should be shown on each page
+        ContestFragmentPagerAdapter adapter = new ContestFragmentPagerAdapter(this, getSupportFragmentManager(),1);
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout =  findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
@@ -52,5 +70,6 @@ public class ContestActivity extends AppCompatActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

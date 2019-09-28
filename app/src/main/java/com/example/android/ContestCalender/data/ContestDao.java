@@ -20,6 +20,9 @@ public interface ContestDao {
     @Delete
     void deleteContest(ContestData contest);
 
+    @Query("SELECT mName from contest_table WHERE mName = :name")
+    String Search(String name);
+
     @Query("SELECT * from contest_table ")
     LiveData<List<ContestData>> getAllContests();
 }

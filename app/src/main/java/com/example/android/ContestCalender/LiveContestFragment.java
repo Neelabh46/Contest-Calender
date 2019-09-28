@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class LiveContestFragment extends Fragment {
         final RecyclerView contestRecyclerView =  root.findViewById(R.id.recycler);
         mEmptyView = root.findViewById(R.id.empty_view);
         mContest = new ArrayList<>();
-        mAdapter = new ContestAdapters(mContest);        // Set the adapter on the {@link ListView}
+        mAdapter = new ContestAdapters(mContest,getActivity());        // Set the adapter on the {@link ListView}
         contestRecyclerView.setAdapter(mAdapter);
         mlinearlayoutmanager = new LinearLayoutManager(getActivity());
         contestRecyclerView.setLayoutManager(mlinearlayoutmanager);

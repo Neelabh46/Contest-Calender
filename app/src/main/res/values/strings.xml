@@ -41,4 +41,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_to_my_contests">Add to My Contests</string>
+    <string name="running">Running</string>
+    <string name="Live_contest_header">Live Contests</string>
+    <string name="My_contest_header">My Contests</string>
+    <string name="upcoming">Upcoming</string>
 </resources>
