@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,8 +76,11 @@ public class MyContestFragment extends Fragment {
                 // Update the cached copy of the words in the adapter.
                // ProgressBar bar = root.findViewById(R.id.loading_spinner);
                 //bar.setVisibility(View.GONE);
+                mContest.clear();
                 mContest.addAll(contests);
+
                 mAdapter.notifyDataSetChanged();
+                Log.e("help", String.valueOf(mContest.size()));
 
             }
         });
