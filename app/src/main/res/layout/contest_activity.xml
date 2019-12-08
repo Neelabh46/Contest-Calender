@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<<<<<<< HEAD
   <com.google.android.material.tabs.TabLayout
       android:id="@+id/tabs"
       android:layout_width="match_parent"
@@ -12,6 +13,27 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:id="@+id/viewpager">
+=======
+  <androidx.recyclerview.widget.RecyclerView
+
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/recycler"
+      >
+
+
+  </androidx.recyclerview.widget.RecyclerView>
+
+    <!-- Empty view is only visible when the list has no items. -->
+
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:textAppearance="?android:textAppearanceMedium"/>
+>>>>>>> master
 
   </androidx.viewpager.widget.ViewPager>
 
