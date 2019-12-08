@@ -3,6 +3,7 @@ package com.example.android.ContestCalender.data;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class ContestRepository {
 
+    int flag;
     private ContestDao mContestDao;
     private LiveData<List<ContestData>> mAllContests;
 
@@ -22,26 +24,17 @@ public class ContestRepository {
     LiveData<List<ContestData>> getAllContests() {
         return mAllContests;
     }
-
-
-    public void insert(ContestData contest) {
-        new insertAsyncTask(mContestDao).execute(contest);
+    public String Search(String name)
+    {
+       return mContestDao.Search(name);
     }
 
-    private static class insertAsyncTask extends AsyncTask<ContestData, Void, Void> {
-
-        private ContestDao mAsyncTaskDao;
-
-        insertAsyncTask(ContestDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final ContestData... params) {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
+    public void insert(ContestData contest)
+    {
+      mContestDao.insert(contest);
     }
+
+
 }
 
 

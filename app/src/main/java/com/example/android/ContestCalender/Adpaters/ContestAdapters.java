@@ -1,22 +1,32 @@
-package com.example.android.ContestCalender;
+package com.example.android.ContestCalender.Adpaters;
 
 import android.content.Context;
 import android.graphics.Color;
 
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.android.ContestCalender.Contest;
+import com.example.android.ContestCalender.ContestActivity;
+import com.example.android.ContestCalender.R;
+import com.example.android.ContestCalender.ViewHolders;
+import com.example.android.ContestCalender.data.ContestData;
+import com.example.android.ContestCalender.data.ContestViewModels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
@@ -25,12 +35,13 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
     // ... view holder defined above...
 
     // Store a member variable for the contacts
-    private ArrayList<Contest> mContests;
-
+    private List<Contest> mContests;
+    Context mContext;
     // Pass in the contact array into the constructor
-    public ContestAdapters(ArrayList<Contest> contests) {
+    public ContestAdapters(List<Contest> contests, Context context) {
 
         mContests = contests;
+        mContext = context;
     }
 
     @Override
@@ -50,8 +61,8 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
     @Override
     public void onBindViewHolder(ViewHolders viewHolder, int position) {
         // Get the data model based on position
-        Contest contest = mContests.get(position);
-
+        final Contest contest = mContests.get(position);
+        final ContestViewModels mViewModel = new ViewModelProvider((ContestActivity)mContext).get(ContestViewModels.class);
         // Set item views based on your views and data model
         TextView textView = viewHolder.mName;
         String names = contest.getName();
@@ -69,7 +80,28 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
         ImageView imgview = viewHolder.mImageView;
         imgview.setImageResource(R.drawable.codechef);
         String contestHost = contest.getHost();
+        final Button mButton = viewHolder.mButton;
 
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(contest.getName().equals(mViewModel.Search(contest)))
+                {
+                    Toast.makeText(mContext,"Contest is already present in MyContests",Toast.LENGTH_LONG).show();
+                }else
+                {
+                    mViewModel.insert(contest);
+                    Toast.makeText(mContext,"Contest Successfully added to MyContests",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        if(contest.getName().equals(mViewModel.Search(contest)))
+        {
+            mButton.setVisibility(View.INVISIBLE);
+        }
         if (contestHost.equals("codeforces.com")) {
             imgview.setImageResource(R.drawable.codeforces);
         }
@@ -126,11 +158,13 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
             Log.e("START", startDate);
             Log.e("CURRENT", curDate);
 
-            view.mView.setBackgroundColor(Color.rgb(135, 232, 116));
+            view.status.setText("Running");
+            view.status.setTextColor(Color.rgb(20, 133, 15));
 
         }else
         {
-            view.mView.setBackgroundColor(Color.WHITE);
+            view.status.setText("Upcoming");
+            view.status.setTextColor(Color.BLACK);
         }
 
 

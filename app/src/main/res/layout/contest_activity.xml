@@ -1,8 +1,19 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+<<<<<<< HEAD
+  <com.google.android.material.tabs.TabLayout
+      android:id="@+id/tabs"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+  <androidx.viewpager.widget.ViewPager
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/viewpager">
+=======
   <androidx.recyclerview.widget.RecyclerView
 
       android:layout_width="match_parent"
@@ -22,12 +33,8 @@
         android:layout_centerInParent="true"
         android:visibility="gone"
         android:textAppearance="?android:textAppearanceMedium"/>
+>>>>>>> master
 
-    <ProgressBar
-        android:id="@+id/loading_spinner"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content" />
+  </androidx.viewpager.widget.ViewPager>
 
-</RelativeLayout>
+</LinearLayout>

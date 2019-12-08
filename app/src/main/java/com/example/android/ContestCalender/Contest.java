@@ -17,9 +17,6 @@ public class Contest {
         host=ht;
     }
 
-
-
-
     public String getName()
     {
         return name;
