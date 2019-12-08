@@ -1,4 +1,4 @@
-package com.example.android.ContestCalender;
+package com.example.android.ContestCalender.Adpaters;
 
 
 
@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.ContestCalender.MyViewHolder;
+import com.example.android.ContestCalender.R;
 import com.example.android.ContestCalender.data.ContestData;
 import com.example.android.ContestCalender.data.ContestViewModels;
 
@@ -139,6 +141,7 @@ public class MyContestAdapter extends RecyclerView.Adapter<MyViewHolder> {
         }else
         {
             view.status.setText("Upcoming");
+            view.status.setTextColor(Color.BLACK);
         }
 
 

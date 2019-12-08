@@ -1,4 +1,4 @@
-package com.example.android.ContestCalender;
+package com.example.android.ContestCalender.Adpaters;
 
 import android.content.Context;
 
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.android.ContestCalender.Fragments.LiveContestFragment;
 import com.example.android.ContestCalender.Fragments.MyContestFragment;
+import com.example.android.ContestCalender.R;
 
 public class ContestFragmentPagerAdapter extends FragmentPagerAdapter {
 

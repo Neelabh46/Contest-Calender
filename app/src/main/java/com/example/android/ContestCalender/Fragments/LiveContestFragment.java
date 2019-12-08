@@ -1,4 +1,4 @@
-package com.example.android.ContestCalender;
+package com.example.android.ContestCalender.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,9 +19,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.android.ContestCalender.Contest;
+import com.example.android.ContestCalender.ContestActivity;
+import com.example.android.ContestCalender.Adpaters.ContestAdapters;
+import com.example.android.ContestCalender.ContestViewModel;
+import com.example.android.ContestCalender.MyViewModelFactory;
+import com.example.android.ContestCalender.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,6 +67,7 @@ public class LiveContestFragment extends Fragment {
         contestRecyclerView.setAdapter(mAdapter);
         mlinearlayoutmanager = new LinearLayoutManager(getActivity());
         contestRecyclerView.setLayoutManager(mlinearlayoutmanager);
+
 
         ConnectivityManager cm =
                 (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

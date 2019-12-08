@@ -1,4 +1,4 @@
-package com.example.android.ContestCalender;
+package com.example.android.ContestCalender.Adpaters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.ContestCalender.Contest;
+import com.example.android.ContestCalender.ContestActivity;
+import com.example.android.ContestCalender.R;
+import com.example.android.ContestCalender.ViewHolders;
 import com.example.android.ContestCalender.data.ContestData;
 import com.example.android.ContestCalender.data.ContestViewModels;
 
@@ -58,7 +62,7 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
     public void onBindViewHolder(ViewHolders viewHolder, int position) {
         // Get the data model based on position
         final Contest contest = mContests.get(position);
-
+        final ContestViewModels mViewModel = new ViewModelProvider((ContestActivity)mContext).get(ContestViewModels.class);
         // Set item views based on your views and data model
         TextView textView = viewHolder.mName;
         String names = contest.getName();
@@ -81,19 +85,23 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContestViewModels mViewModel = new ViewModelProvider((ContestActivity)mContext).get(ContestViewModels.class);
+
 
                 if(contest.getName().equals(mViewModel.Search(contest)))
                 {
-                    Toast.makeText(mContext,"Contest is already added to MyActivity",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext,"Contest is already present in MyContests",Toast.LENGTH_LONG).show();
                 }else
                 {
                     mViewModel.insert(contest);
-                    Toast.makeText(mContext,"Contest Successfully  added to MyActivity",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext,"Contest Successfully added to MyContests",Toast.LENGTH_LONG).show();
                 }
             }
         });
 
+        if(contest.getName().equals(mViewModel.Search(contest)))
+        {
+            mButton.setVisibility(View.INVISIBLE);
+        }
         if (contestHost.equals("codeforces.com")) {
             imgview.setImageResource(R.drawable.codeforces);
         }
@@ -156,6 +164,7 @@ public class ContestAdapters extends RecyclerView.Adapter<ViewHolders> {
         }else
         {
             view.status.setText("Upcoming");
+            view.status.setTextColor(Color.BLACK);
         }
 
 
