@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 
+import com.example.android.ContestCalender.Fragments.LiveContestFragment;
+import com.example.android.ContestCalender.Fragments.MyContestFragment;
+
 public class ContestFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
